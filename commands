@@ -1,0 +1,35 @@
+0. 컨트랙트 배포하기 
+./cleos.sh set contract hellotestman ./contracts/hello -p hellotestman@active
+
+1. 게임 
+./cleos.sh push action hellotestman creategame '["hellotestguy","10.0000 EOS"]' -p hellotestguy
+
+2. 게임 참여
+./cleos.sh push action hellotestman joingame '["hellotestguy","clubmateshot","10.0000 EOS"]' -p clubmateshot
+
+3. 주사위 던지기
+./cleos.sh push action hellotestman rolldice '["hellotestguy","hellotestguy"]' -p hellotestguy
+./cleos.sh push action hellotestman rolldice '["hellotestguy","clubmateshot"]' -p clubmateshot
+
+4. 컨트랙트 테이블 
+./cleos.sh get table hellotestman hellotestman game
+./cleos.sh get table hellotestman hellotestman balance
+
+5. EOS토큰 TRANSFER
+./cleos.sh push action eosio.token transfer '["hellotestguy", "hellotestman", "10.0000 EOS"]' -p hellotestguy
+./cleos.sh push action eosio.token transfer '["clubmateshot", "hellotestman", "10.0000 EOS"]' -p clubmateshot
+
+6. EOS잔액 확인하기
+./cleos.sh get currency balance eosio.token hellotestguy
+./cleos.sh get currency balance eosio.token clubmateshot
+
+7.램 구매하기
+./cleos.sh system buyram hellotestman hellotestman "10.0000 EOS"
+
+8. 자원 스테이킹
+./cleos.sh system delegatebw hellotestman hellotestman "10.0000 EOS" "10.0000 EOS"
+
+9. 컨트랙트 코드 퍼미션 
+./cleos.sh set account permission hellotestman active '{"threshold": 1,"keys": [{"key": "*****************","weight": 1}],"accounts": [{"permission":{"actor":"hellotestman","permission":"eosio.code"},"weight":1}]}' owner -p hellotestman
+
+
